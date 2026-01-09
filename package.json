@@ -1,0 +1,21 @@
+{
+  "name": "natours",
+  "version": "1.2.11",
+  "description": "A long ass description of an app Im gona forget about next tuesday",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js"
+  },
+  "keywords": [
+    "procrastinator"
+  ],
+  "author": "aarkay",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^17.2.3",
+    "express": "^4.22.1",
+    "mongoose": "^5.13.23",
+    "morgan": "^1.10.1"
+  }
+}
