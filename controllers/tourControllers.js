@@ -8,6 +8,12 @@ exports.aliasTopTours = (req, res, next) => {
   next();
 };
 
+const catchAsync = (fn) => {
+  return (req, res, next) => {
+    fn(req, res, next).catch(next);
+  };
+};
+
 exports.getTour = async (req, res) => {
   try {
     const tours = await Tour.findById(req.params.id);
@@ -41,6 +47,7 @@ exports.getAllTours = async (req, res) => {
       },
     });
   } catch (error) {
+    console.log(error);
     res.status(400).json({
       status: 'fail',
       message: error,
