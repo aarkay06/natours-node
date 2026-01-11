@@ -2,7 +2,7 @@ const express = require('express');
 const fs = require('fs');
 const morgan = require('morgan');
 const AppError = require('./utils/appError');
-consy globalErrorHandler = require('./controllers/errorController');
+const globalErrorHandler = require('./controllers/errorController');
 
 const tourRouter = require('./routes/tourRoutes');
 const userRouter = require('./routes/userRoutes');
@@ -18,12 +18,12 @@ app.use((req, res, next) => {
 });
 
 app.use('/api/v1/tours', tourRouter);
-app.use('api/v1/users', userRouter);
+app.use('/api/v1/users', userRouter);
 
 app.all('*', (req, res) => {
   next(new AppError(`Can't find ${req.originalUrl} on this server!`, 404));
 });
 
-app.use();
+app.use(globalErrorHandler);
 
 module.exports = app;
