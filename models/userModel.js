@@ -26,6 +26,12 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: [true, 'Please iniput a password'],
     minlength: 8,
+    validate: {
+      validator: function (el) {
+        return el === this.password;
+      },
+      message: 'The passwords are not the same!',
+    },
   },
 });
 
