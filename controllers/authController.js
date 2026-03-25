@@ -13,7 +13,7 @@ exports.signup = catchAsync(async (req, res, next) => {
   const token = jsw.sign({ id: newUser._id }, process.env.JSW_SECRET_KEY, {
     expiresIn: process.env.JSW_EXPIRES_IN,
   });
-  res.status(201).json({
+  res.status(200).json({
     status: 'success',
     token,
     data: {
@@ -22,7 +22,7 @@ exports.signup = catchAsync(async (req, res, next) => {
   });
 });
 
-exports.singin = catchAsync(async (req, res, next) => {
+exports.login = catchAsync(async (req, res, next) => {
   const { email, password } = req.body;
 
   if (!email || !password) {
@@ -30,7 +30,7 @@ exports.singin = catchAsync(async (req, res, next) => {
   }
 
   const token = '';
-  res.status(201).json({
+  res.status(200).json({
     status: 'success',
     token,
   });
