@@ -28,4 +28,10 @@ exports.singin = catchAsync(async (req, res, next) => {
   if (!email || !password) {
     next(new AppError('Please provide email and password.', 400));
   }
+
+  const token = '';
+  res.status(201).json({
+    status: 'success',
+    token,
+  });
 });
