@@ -25,9 +25,13 @@ exports.signup = catchAsync(async (req, res, next) => {
 exports.login = catchAsync(async (req, res, next) => {
   const { email, password } = req.body;
 
+  // 1. Check if email and password exits
   if (!email || !password) {
     return next(new AppError('Please provide email and password.', 400));
   }
+
+  // 2. Check if the user exists and the password is correct
+  const user = User.findOne({ email });
 
   const token = '';
   res.status(200).json({
