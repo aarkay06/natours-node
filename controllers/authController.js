@@ -1,6 +1,6 @@
 const catchAsync = require('../utils/catchAsync');
 const User = require('./../models/userModel');
-const jsw = require('jsonwebtoken');
+const jwt = require('jsonwebtoken');
 const AppError = require('../utils/appError');
 
 exports.signup = catchAsync(async (req, res, next) => {
@@ -9,10 +9,10 @@ exports.signup = catchAsync(async (req, res, next) => {
     name: req.body.name,
     email: req.body.email,
     password: req.body.password,
-    passwordConfirm: req.body.passwordConfirm,
+    confirmPassword: req.body.confirmPassword,
   });
   console.log(newUser);
-  const token = jsw.sign({ id: newUser._id }, process.env.JSW_SECRET_KEY, {
+  const token = jwt.sign({ id: newUser._id }, process.env.JSW_SECRET_KEY, {
     expiresIn: process.env.JSW_EXPIRES_IN,
   });
   res.status(200).json({
