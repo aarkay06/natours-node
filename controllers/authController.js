@@ -4,6 +4,7 @@ const jsw = require('jsonwebtoken');
 const AppError = require('../utils/appError');
 
 exports.signup = catchAsync(async (req, res, next) => {
+  console.log('creating usrr');
   const newUser = await User.create({
     name: req.body.name,
     email: req.body.email,
