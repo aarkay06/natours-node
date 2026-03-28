@@ -71,4 +71,5 @@ exports.protect = catchAsync(async (req, res, next) => {
     process.env.JWT_SECRET_KEY,
   );
   console.log(decoded);
+  next();
 });
