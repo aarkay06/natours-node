@@ -34,7 +34,7 @@ exports.login = catchAsync(async (req, res, next) => {
 
   // 2. Check if the user exists and the password is correct
   const user = User.findOne({ email });
-
+  console.log(user);
   const token = '';
   res.status(200).json({
     status: 'success',
