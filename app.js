@@ -17,12 +17,12 @@ app.use((req, res, next) => {
   next();
 });
 
-app.all('*', (req, res) => {
-  next(new AppError(`Can't find ${req.originalUrl} on this server!`, 404));
-});
+app.use(globalErrorHandler);
+
 app.use('/api/v1/tours', tourRouter);
 app.use('/api/v1/users', userRouter);
 
-app.use(globalErrorHandler);
-
+app.all('*', (req, res) => {
+  next(new AppError(`Can't find ${req.originalUrl} on this server!`, 404));
+});
 module.exports = app;
