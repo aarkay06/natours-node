@@ -3,6 +3,12 @@ const User = require('./../models/userModel');
 const jwt = require('jsonwebtoken');
 const AppError = require('../utils/appError');
 
+const signToken = (id) => {
+  return jwt.sign({ id }, process.env.JSW_SECRET_KEY, {
+    expiresIn: process.env.JSW_EXPIRES_IN,
+  });
+};
+
 exports.signup = catchAsync(async (req, res, next) => {
   console.log('creating usrr');
   const newUser = await User.create({
@@ -12,9 +18,7 @@ exports.signup = catchAsync(async (req, res, next) => {
     confirmPassword: req.body.confirmPassword,
   });
   console.log(newUser);
-  const token = jwt.sign({ id: newUser._id }, process.env.JSW_SECRET_KEY, {
-    expiresIn: process.env.JSW_EXPIRES_IN,
-  });
+  const token = signToken(newUser._id);
   res.status(200).json({
     status: 'success',
     token,
