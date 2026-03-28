@@ -11,6 +11,7 @@ exports.signup = catchAsync(async (req, res, next) => {
     password: req.body.password,
     passwordConfirm: req.body.passwordConfirm,
   });
+  console.log(newUser);
   const token = jsw.sign({ id: newUser._id }, process.env.JSW_SECRET_KEY, {
     expiresIn: process.env.JSW_EXPIRES_IN,
   });
