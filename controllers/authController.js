@@ -5,8 +5,8 @@ const AppError = require('../utils/appError');
 const { promisify } = require('util');
 
 const signToken = (id) => {
-  return jwt.sign({ id }, process.env.JSW_SECRET_KEY, {
-    expiresIn: process.env.JSW_EXPIRES_IN,
+  return jwt.sign({ id }, process.env.JWT_SECRET_KEY, {
+    expiresIn: process.env.JWT_EXPIRES_IN,
   });
 };
 
@@ -66,6 +66,9 @@ exports.protect = catchAsync(async (req, res, next) => {
   }
 
   // 2) Verification token
-  const decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET);
+  const decoded = await promisify(jwt.verify)(
+    token,
+    process.env.JWT_SECRET_KEY,
+  );
   console.log(decoded);
 });
