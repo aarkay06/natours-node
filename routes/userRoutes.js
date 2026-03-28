@@ -2,7 +2,7 @@ const express = require('express');
 const { signup, login } = require('../controllers/authController');
 
 const { getAllUsers, createUser, getUser, updateUser, deleteUser } = require(
-  `${__dirname}/controllers/userControllers.js`,
+  `${__dirname}/../controllers/userControllers.js`,
 );
 
 const router = express.Router();
