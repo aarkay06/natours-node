@@ -71,5 +71,9 @@ exports.protect = catchAsync(async (req, res, next) => {
     process.env.JWT_SECRET_KEY,
   );
   console.log(decoded);
+
+  //3. Check if the user still exists
+  User.findById(decoded.id);
+
   next();
 });
