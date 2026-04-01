@@ -21,6 +21,7 @@ const userSchema = new mongoose.Schema({
   role: {
     type: String,
     enum: ['user', 'guide', 'lead-guide', 'admin'],
+    default: 'user',
   },
   password: {
     type: String,
@@ -39,6 +40,9 @@ const userSchema = new mongoose.Schema({
       message: 'The passwords are not the same!',
     },
   },
+
+  resetPasswordToken: String,
+  resetPasswordExpires: Date,
 });
 
 userSchema.pre('save', async function (next) {
